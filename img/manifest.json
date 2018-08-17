@@ -2,7 +2,7 @@
   "name": "QR CODE SCANNER",
  "short_name": "QCODE SCAN",
  "lang": "en-US",
- "start_url": "/",
+ "start_url": "https://rbcabreraupm.github.io/QR_SCANNER_PWA/",
  "background_color": "white",
  "theme_color": "blue",
  "display": "standalone",

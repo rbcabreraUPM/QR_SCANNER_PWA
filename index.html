@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+   <meta name="mobile-web-app-capable" content="yes">
+   <base target="_blank">
+  <title>QR CODE SCANNER</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+  <style>
+  
+
+@media only screen and (max-width: 600px) {
+#reader{
+      width:auto;
+      height:400px;
+
+    }
+}
+</style>
+
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script type="text/javascript" src ="js/html5-qrcode.min.js"></script>
+  <script type="text/javascript" src ="js/jsqrcode-combined.min.js"></script>
+ 
+
+</head>
+<body>
+  <nav class=" indigo darken-2" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo" style="font-size:110%">QR CODE SCANNER</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="/">REFRESH</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="/">REFRESH</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+
+
+
+ <div id="reader" style="width:auto;height:500px"></div>
+
+</div>
+
+
+
+
+
+
+  
+
+
+  <!--  Scripts-->
+  
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+    
+  <script type="text/javascript">
+     $('#reader').html5_qrcode(function(data){
+     // do something when code is read
+     alert(data)
+  },
+  function(error){
+    //show read errors 
+  }, function(videoError){
+    //the video stream could be opened
+  }
+);
+
+
+ 
+
+  </script>
+  </body>
+</html>

@@ -4,7 +4,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
    <meta name="mobile-web-app-capable" content="yes">
-   <base target="_blank">
+  
   <title>QR CODE SCANNER</title>
 
   <!-- CSS  -->
@@ -12,7 +12,7 @@
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 
- <style>
+  <style>
 
   /* css as usual */
 
@@ -58,6 +58,27 @@
   <script type="text/javascript" src ="js/jsqrcode-combined.min.js"></script>
   <script type="text/javascript" src="js/instascan.min.js"></script>
 
+
+
+<link rel="apple-touch-icon" sizes="57x57" href="img/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="img/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="img/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="img/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="img/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="img/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="img/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="img/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="img/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="img/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="img/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+<link rel="manifest" href="img/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="img/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+
 </head>
 <body>
   <nav class=" indigo darken-2" role="navigation">
@@ -68,6 +89,8 @@
 
       <ul id="nav-mobile" class="side-nav">
         <li><a href="/">REFRESH</a></li>
+
+        <div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
@@ -76,7 +99,7 @@
 
 
 
-<div class="video-container">
+<div class="center video-container">
 
     <video id="preview"></video>
   
@@ -103,7 +126,9 @@
   <script type="text/javascript">
         let scanner = new Instascan.Scanner({ video: document.getElementById('preview'),mirror: false});
             scanner.addListener('scan', function (content) {
-             alert(content);
+              console.log(content);
+             localStorage.setItem("value",content);
+                window.location.replace("trial.html");
             });
             Instascan.Camera.getCameras().then(function (cameras) {
               if (cameras.length > 0) {
@@ -143,6 +168,19 @@
           });
       }).resize();
  </script>
+
+ <script type="text/javascript">
+      if (navigator.serviceWorker.controller) {
+        console.log('[PWA Builder] active service worker found, no need to register')
+      } else {
+        //Register the ServiceWorker
+        navigator.serviceWorker.register('pwabuilder-sw.js', {
+          scope: './'
+        }).then(function(reg) {
+          console.log('Service worker has been registered for scope:'+ reg.scope);
+        });
+      }
+    </script>
 
 
   </body>

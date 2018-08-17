@@ -1,25 +1,123 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Instascan</title>
-    <script type="text/javascript" src="js/instascan.min.js"></script>
-  </head>
-  <body>
-    <video id="preview"></video>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+   <meta name="mobile-web-app-capable" content="yes">
+   
+  <title>QR CODE SCANNER</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+ 
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script type="text/javascript" src ="js/html5-qrcode.min.js"></script>
+
+</head>
+<body>
+  <nav class=" indigo darken-2" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo" style="font-size:110%">QR CODE SCANNER</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="/trial.html">REFRESH</a></li>
+          <li><a href="/">SCAN QR CODE</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="/trial.html">REFRESH</a></li>
+         <li><a href="/">SCAN QR CODE</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+
+
+
+
+<p id="demo"></p>
+<div class="container">
+  <div class="row">
+      <div class="col s6 l6">
+         <img class="responsive-img" id="profile">
+      </div>
+
+
+      <div class="col s6 l6">
+             <div class="card-panel" id="first_name">
+          <span class="black-text">
+          </span>
+        </div>
+      </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+  
+
+
+  <!--  Scripts-->
+  
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
     <script type="text/javascript">
-      let scanner = new Instascan.Scanner({ video: document.getElementById('preview'),mirror: false});
-      scanner.addListener('scan', function (content) {
-        console.log(content);
-      });
-      Instascan.Camera.getCameras().then(function (cameras) {
-        if (cameras.length > 0) {
-          scanner.start(cameras[1]);
-        } else {
-          console.error('No cameras found.');
-        }
-      }).catch(function (e) {
-        console.error(e);
-      });
+     id = localStorage.getItem("value");
+     console.log(id)
     </script>
+  
+  <script>
+//script to get data from XML 
+var xhttp;
+xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        get_data(this);
+    }
+};
+xhttp.open("GET", "ACC-response-data-expor.xml", true);
+xhttp.send();
+
+function get_data(xml) {
+    var xmlDoc; 
+    xmlDoc = xml.responseXML;
+    txt = "";
+    x = xmlDoc.getElementsByTagName("delegate");
+    for (i = 0; i < x.length; i++) { 
+       /* txt += x[i].childNodes[0].nodeValue + "<br>";*/
+       var val = x[i].getElementsByTagName('unique_id')[0].childNodes[0].nodeValue;
+     
+       if(String(val) == id){
+        img = x[i].getElementsByTagName('profile_pic')[0].childNodes[0].nodeValue;
+          document.getElementById("profile").src = img;
+
+
+
+        first_name = x[i].getElementsByTagName('first_name')[0].childNodes[0].nodeValue;
+        last_name = x[i].getElementsByTagName('last_name')[0].childNodes[0].nodeValue;
+          document.getElementById("first_name").innerHTML = first_name+ " "+last_name;
+
+
+          try {
+                    var url = x[i].getElementsByTagName('address_line_two')[0].childNodes[0].nodeValue;
+
+              }
+              catch(err) {
+                  console.log("error");
+              }
+       }
+    }
+   
+}
+</script>
+
+
   </body>
 </html>

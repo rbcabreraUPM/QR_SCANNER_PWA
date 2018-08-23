@@ -12,3 +12,27 @@
 .icon-block .material-icons {
 	font-size: inherit;
 }
+
+
+/*desktop*/
+  @media only screen and (min-width: 768px) {
+        
+
+}
+
+@media screen and (max-width: 736px) {
+  /*MOBILE*/
+  .id-preview-info-image {
+           background-image: url("img/id_template.jpg");
+           
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 430px;
+
+            position: relative;
+          }
+  .modal{
+    width: 310px;
+  }       
+}
+

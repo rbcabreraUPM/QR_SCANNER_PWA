@@ -14,11 +14,111 @@
 
  
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-  <script type="text/javascript" src ="js/html5-qrcode.min.js"></script>
 
+  <script type="text/javascript" src ="js/html5-qrcode.min.js"></script>
+  <script src="js/jquery.cropit.js"></script>
+
+
+<style media="print">
+  
+  #cropped_image{
+     padding-top: 131px;
+      padding-left: 6px;
+      display: block;
+    margin-left: auto;
+    margin-right: auto;
+   
+   
+ }
+ 
+ #badge_name{
+  padding-top: 5px;
+  text-align: center;
+
+ }
+
+ #company_name{
+    text-align: center;
+ }
+
+  #preview{
+      display: block;
+    margin-left: auto;
+    margin-right: auto;
+ 
+
+  }    
+}
+
+
+</style>
+
+  <style>
+      .cropit-preview {
+        background-color: #f8f8f8;
+        background-size: cover;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        margin-top: 7px;
+        width: 250px;
+        height: 250px;
+      }
+
+      .cropit-preview-image-container {
+        cursor: move;
+      }
+
+      .image-size-label {
+        margin-top: 10px;aa
+      }
+
+      input, .export {
+        display: block;
+      }
+
+      button {
+        margin-top: 10px;
+      }
+
+      .modal-content{
+        height: 400px;
+      }
+
+      .id-preview-info-image {
+           background-image: url("img/id_template.jpg");
+           
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 430px;
+            position: relative;
+          }
+
+  /*    .id-preview-info-content {
+      padding-top: 131px;
+      padding-left: 6px;
+      }
+*/
+      .id_preview-info-id-image{
+         padding-top: 131px;
+      padding-left: 6px;
+  }
+
+        #cropped_image{
+         width: 120px;
+         height:115px;
+       }
+
+      #company_name{
+        height: 10px; 
+        font-size: 9px;
+      }
+
+
+</style>
 </head>
 <body>
-  <nav class=" indigo darken-2" role="navigation">
+
+    <nav class=" indigo darken-2" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo" style="font-size:110%">QR CODE SCANNER</a>
       <ul class="right hide-on-med-and-down">
         <li><a href="/trial.html">REFRESH</a></li>
@@ -32,92 +132,134 @@
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
   </nav>
-
-
-
-
-<p id="demo"></p>
+ 
+<br><br>
 <div class="container">
   <div class="row">
-      <div class="col s6 l6">
-         <img class="responsive-img" id="profile">
+      <div class="col s12 l6" >
+        <div class="center" id="div_id">
+            <div class="card-panel">
+              <div class="image-editor">
+              <input type="file" class="cropit-image-input">
+                <div id="id_preview">
+                  <div id="preview" class="cropit-preview"></div>
+                </div>
+                <div class="image-size-label">
+                  Resize image
+                </div>
+              <input type="range" class="cropit-image-zoom-input">
+            </div>
+            </div>
+          </div>
       </div>
 
+      <div class="col s12 l6">
+        
+                 <ul class="collapsible" data-collapsible="accordion">
+    <li>
+      <div class="collapsible-header active"><i class="material-icons">account_circle</i>Account Information</div>
+      <div class="collapsible-body">   <div class="attendee_info">
+                      <span>ID: <span id="id_number1" ></span></span> 
+                <br>
+               <span >FULL NAME: <span id="badge_name1" ></span></span> 
+                <br>
+               <span >COMPANY:   <span id="company_name1"></span></span> 
+                 <br>
+               <span >EMAIL:   <span id="email1"></span></span> 
+                 <br>
+               <span >REGISTRATION TYPE:   <span id="registration_type1" ></span></span> 
 
-      <div class="col s6 l6">
-             <div class="card-panel" id="first_name">
-          <span class="black-text">
-          </span>
-        </div>
+                 </div>
+    </li>
+    
+  </ul>
+        
       </div>
+    </div>
+
+  <div class="row">
+       <div class="center">
+         
+         <!-- Modal Trigger -->
+                <a class="waves-effect z-depth-5 waves-light btn modal-trigger" href="#modal1">PREVIEW ID</a>
+
+                <!-- Modal Structure -->
+                <div id="modal1" class="modal  modal-fixed-footer">
+                  <div class="modal-content">
+                        <br>
+                    <div class="id-preview-info-image">
+                        <div class="id-preview-info-content">
+                          <div  id="print_id_template" class="id_preview-info-id-image">
+                             <img class="image1 responsive-img" id="cropped_image">
+                             <div style=" font-weight: bold;" id="badge_name"></div>
+                             <div id="company_name"></div>
+                          </div>
+                        </div>
+                      </div>
+                     <br>
+                            <a class="waves-effect waves-light red btn"  id="print" onclick="printDiv('print_id_template')">PRINT ID</a>
+                  </div>
+
+                  <div class="modal-footer">
+                    <a href="trial.html"  class="modal-action modal-close waves-effect waves-green btn-flat">CLOSE PREVIEW</a>
+                  </div>
+                </div>
+       </div>
   </div>
 </div>
 
 
 
-
-
-
-
-
-
-  
-
-
-  <!--  Scripts-->
-  
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
+
+
+
+   <!-- getting ID --> 
     <script type="text/javascript">
-     id = localStorage.getItem("value");
-     console.log(id)
-    </script>
-  
-  <script>
-//script to get data from XML 
-var xhttp;
-xhttp = new XMLHttpRequest();
-xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-        get_data(this);
-    }
-};
-xhttp.open("GET", "ACC-response-data-expor.xml", true);
-xhttp.send();
+      var is_email = 0;
 
-function get_data(xml) {
-    var xmlDoc; 
-    xmlDoc = xml.responseXML;
-    txt = "";
-    x = xmlDoc.getElementsByTagName("delegate");
-    for (i = 0; i < x.length; i++) { 
-       /* txt += x[i].childNodes[0].nodeValue + "<br>";*/
-       var val = x[i].getElementsByTagName('unique_id')[0].childNodes[0].nodeValue;
-     
-       if(String(val) == id){
-        img = x[i].getElementsByTagName('profile_pic')[0].childNodes[0].nodeValue;
-          document.getElementById("profile").src = img;
-
-
-
-        first_name = x[i].getElementsByTagName('first_name')[0].childNodes[0].nodeValue;
-        last_name = x[i].getElementsByTagName('last_name')[0].childNodes[0].nodeValue;
-          document.getElementById("first_name").innerHTML = first_name+ " "+last_name;
-
-
-          try {
-                    var url = x[i].getElementsByTagName('address_line_two')[0].childNodes[0].nodeValue;
-
-              }
-              catch(err) {
-                  console.log("error");
-              }
+         if (localStorage.getItem("isEmailUsed") == 1) {
+              is_email = localStorage.getItem('isEmailUsed');
        }
-    }
+        search_value = localStorage.getItem("value");
    
-}
-</script>
+    </script>
 
+
+
+
+
+
+
+
+
+ 
+
+ 
+<!-- js script for extracting data -->
+ <script type="text/javascript" src="js/xml_data_extract.js"></script>
+
+<!-- script for printing div -->
+<script type="text/javascript" src="js/print_script.js"></script>
+
+
+ <script type="text/javascript">
+     $(document).ready(function(){
+    // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+             $('.modal').modal({
+                dismissible: true, // Modal can be dismissed by clicking outside of the modal
+                ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+                       var imageData = $('.image-editor').cropit('export');
+                    document.getElementById("cropped_image").src = imageData;
+               /*   console.log(modal, trigger);*/
+                },
+                complete: function() {
+                 } // Callback for Modal close
+              }
+            );
+    });
+  </script>
 
   </body>
 </html>

@@ -30,6 +30,7 @@
   bottom: 10;
   width: 100%;
   height: 50%; 
+  padding-top: 70px;
 
 }
 .video-container video {
@@ -59,10 +60,35 @@
 </style>
 
 <style type="text/css">
-  @media (min-width: 1024px){
+  @media (min-width: 1365px){
     .video-container{
+    padding-top: 240px;
     padding-bottom: 0px;
     height: auto;
+  }
+  }
+</style>
+
+
+
+<style type="text/css">
+  @media (min-width: 1024px){
+    .video-container{
+    padding-top: 100px;
+    padding-bottom: 0px;
+    height: auto;
+  }
+  }
+
+  @media (min-width: 1366px){
+    .video-container{
+    padding-top: 70px;
+    padding-bottom: 0px;
+    height: auto;
+  }
+
+  #preview{
+    width: 1250px;
   }
   }
 </style>
@@ -97,14 +123,43 @@
 
 </head>
 <body>
-  <nav class=" indigo darken-2" role="navigation">
+    <ul id="dropdown1" class="dropdown-content">
+  <li><a onclick=AttendanceChecker(1);>Workshop 1</a></li>
+  <li class="divider"></li>
+  <li><a onclick=AttendanceChecker(2);>Workshop 2</a></li>
+  <li class="divider"></li>
+  <li><a onclick=AttendanceChecker(3);>Workshop 3</a></li>
+  <li class="divider"></li>
+  <li><a onclick=AttendanceChecker(4);>Workshop 4</a></li>
+  <li class="divider"></li>
+  <li><a onclick=AttendanceChecker(5);>Workshop 5</a></li>
+  <li class="divider"></li>
+  <li><a onclick=AttendanceChecker(6);>Workshop 6</a></li>
+  <li class="divider"></li>
+  <li><a onclick=AttendanceChecker(7);>Workshop 7</a></li>
+  <li class="divider"></li>
+  <li><a onclick=AttendanceChecker(8);>Workshop 8</a></li>
+  <li class="divider"></li>
+  <li><a onclick=AttendanceChecker(9);>Workshop 9</a></li>
+  <li class="divider"></li>
+  <li><a onclick=AttendanceChecker(10);>Workshop 10</a></li>
+  <li class="divider"></li>
+  <li><a onclick=AttendanceChecker(11);>Workshop 11</a></li>
+  <li class="divider"></li>
+  <li><a onclick=AttendanceChecker(12);>Workshop 12</a></li>
+  <li class="divider"></li>
+  <li><a onclick=AttendanceChecker(13);>Workshop 13</a></li>
+
+</ul>
+  <nav class="teal" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo" style="font-size:110%">QR CODE SCANNER</a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="https://rbcabreraupm.github.io/QR_SCANNER_PWA/">REFRESH</a></li>
+        <li><a href="/">REFRESH</a></li>
+         <li><a class="dropdown-button" href="#!" data-activates="dropdown1">WORKSHOP<i class="material-icons right">arrow_drop_down</i></a></li>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
-        <li><a href="https://rbcabreraupm.github.io/QR_SCANNER_PWA/">REFRESH</a></li>
+        <li><a href="/">REFRESH</a></li>
 
         <div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
       </ul>
@@ -112,7 +167,7 @@
     </div>
   </nav>
 
-  <div style="padding-top: 70px;" class="center video-container">
+  <div  class="center video-container">
        <div class="row ">
             <video id="preview"></video>
        </div>
@@ -143,11 +198,9 @@
              </div>
          </div>
 
-
-                 <div style="padding-top: 15px">
+         <div style="padding-top: 15px">
             <a onclick="getInfo()"; class="waves-effect waves-light btn">SUBMIT</a>
          </div>
-           
       </div>
 </div>
    
@@ -155,9 +208,11 @@
   
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
-    
+  
+
+
   <script type="text/javascript">
-        let scanner = new Instascan.Scanner({ video: document.getElementById('preview'),mirror: false});
+      let scanner = new Instascan.Scanner({ video: document.getElementById('preview'),mirror: false});
             scanner.addListener('scan', function (content) {
               console.log(content);
              localStorage.setItem("value",content);
@@ -166,7 +221,7 @@
             Instascan.Camera.getCameras().then(function (cameras) {
               if (cameras.length > 0) {
                 if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-                          scanner.start(cameras[1]);
+                          scanner.start(cameras[0]);
                           console.log("phone")
                   }else{
                             scanner.start(cameras[0]);
@@ -179,9 +234,9 @@
             }).catch(function (e) {
               console.error(e);
             });
-    </script>
-
-
+  </script>
+<!-- 
+video alignment script -->
  <script type="text/javascript">
    var $video  = $('preview'),
     $window = $(window); 
@@ -203,6 +258,8 @@
 
  </script>
 
+
+<!-- script for loading ID page -->
 <script type="text/javascript">
   
   function getInfo(){
@@ -220,8 +277,7 @@
                   loadIDpage(input_value,1);
           }
         }
-    
-  }
+    }
 
   function validate(email) {
     var emailFilter = /^([a-zA-Z0-9_.-])+@(([a-zA-Z0-9-])+.)+([a-zA-Z0-9]{2,4})+$/;
@@ -231,10 +287,7 @@
         alert('Please enter a valid e-mail address.');
         return false;
     }
-
-   
-
-    return true;
+     return true;
 }
 
   function loadIDpage(value){
@@ -250,30 +303,12 @@
   }
 </script>
 
-<script type="text/javascript">
-$(document).ready(function(){
-    //hide email form
-    $("#source_input_field_email_div").hide();
 
+<!-- alternate email/id input -->
+<script type="text/javascript" src="js/switch_input.js"></script>
+<script type="text/javascript" src="js/AttendanceChecker.js"></script>
 
-    $("select.source").change(function(){
-        var selectedSource = $(".source option:selected").val();
-        if(String(selectedSource) == 'select_id'){
-          $("#source_input_field_id_div").show();
-          $("#source_input_field_email_div").hide();
-       
-        }
-        else{
-          $("#source_input_field_id_div").hide();
-          $("#source_input_field_email_div").show();
-        }
-
-
-    
-    });
-});
-</script>
- <script type="text/javascript">
+ <!-- <script type="text/javascript">
       if (navigator.serviceWorker.controller) {
         console.log('[PWA Builder] active service worker found, no need to register')
       } else {
@@ -284,7 +319,7 @@ $(document).ready(function(){
           console.log('Service worker has been registered for scope:'+ reg.scope);
         });
       }
-    </script>
+    </script> -->
 
     
 

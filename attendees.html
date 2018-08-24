@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+   <meta name="mobile-web-app-capable" content="yes">
+  
+  <title>QR CODE SCANNER</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+  <style>
+
+  /* css as usual */
+
+
+/* condition for screen size minimum of 500px */
+@media (max-width:500px) {
+
+  /* your conditional / responsive CSS inside this condition */
+
+  
+
+.video-container {
+  position: absolute;
+  /*top: 10%;*/
+  bottom: 10;
+  width: 100%;
+  height: 50%; 
+  padding-top: 70px;
+
+}
+  .video-container video {
+    /* Make video to at least 100% wide and tall */
+    min-width: 100%; 
+    min-height: 100%; 
+
+    /* Setting width & height to auto prevents the browser from stretching or squishing the video */
+    width: auto;
+    height: auto;
+
+    /* Center the video */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+  }
+}
+
+</style>
+
+
+
+
+<style type="text/css">
+  @media (min-width: 1024px){
+    .video-container{
+    padding-top: 15px;
+    padding-bottom: 0px;
+    height: auto;
+  }
+  }
+
+  @media (min-width: 1366px){
+    .video-container{
+    padding-top: 70px;
+    padding-bottom: 0px;
+    height: auto;
+  }
+
+  #preview{
+    width: 1000px;
+  }
+  }
+</style>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.css"/>
+ 
+
+
+
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script type="text/javascript" src ="js/html5-qrcode.min.js"></script>
+  <script type="text/javascript" src ="js/jsqrcode-combined.min.js"></script>
+  <script type="text/javascript" src="js/instascan.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.18/datatables.min.js"></script>
+
+
+<link rel="apple-touch-icon" sizes="57x57" href="img/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="img/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="img/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="img/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="img/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="img/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="img/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="img/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="img/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="img/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="img/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+<link rel="manifest" href="img/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="img/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+
+</head>
+<body>
+
+  <nav class="teal" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo" style="font-size:110%">QR CODE SCANNER</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="/attendees.html">REFRESH</a></li>
+        
+      </ul>
+
+
+      <ul id="nav-mobile" class="side-nav">
+        <li><a href="/attendees.html">REFRESH</a></li>
+
+        <div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+
+  </nav>
+  <nav class=" teal lighten-2">
+    <div class="nav-wrapper container">
+      <div class="col s12">
+        <a href="#!" id ="breadcrumb_label" class="breadcrumb"></a>
+      </div>
+    </div>
+  </nav>
+
+
+<br><br>
+  <div  class="video-container">
+       <div style="padding-left: 10px" class="row ">
+            <div class="col m8 s8 l8">
+              <video id="preview"></video>
+            </div>
+
+              <div class="col m4 s4 l4">
+                 <table  id ="dataTable" class="bordered responsive-table">
+                    <thead>
+                      <tr>
+                          <th>ID</th>
+                          <th>TIME</th>
+                        
+                      </tr>
+                    </thead>
+
+                    <tbody id="myTable">
+
+                    </tbody>
+                  </table>
+            </div>
+       </div>
+  </div>
+
+   
+   <!--  Scripts-->
+  
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+  <script type="text/javascript">
+    document.getElementById('breadcrumb_label').innerHTML = "Workshop " + localStorage.getItem('workshop_number');
+    
+  </script>
+
+
+
+  <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
+  <script type="text/javascript">
+    
+
+    var config = {
+    apiKey: "AIzaSyD1QMwn2nUb6QUUXaSdU8oPZDgMRev76C8",
+    authDomain: "clinicqr.firebaseapp.com",
+    databaseURL: "https://clinicqr.firebaseio.com",
+    projectId: "clinicqr",
+    storageBucket: "clinicqr.appspot.com",
+    messagingSenderId: "410584252822"
+  };
+  firebase.initializeApp(config);
+  </script>
+
+  <script type="text/javascript">
+      var database_ref = firebase.database().ref();
+
+
+      function writeUserData(event_number, id_name) {
+            var d = new Date(); 
+            d = d.toString();
+            d = d.slice(0,-36);
+            firebase.database().ref('attendees/' + event_number +'/' +id_name).set({
+             DateTime: d
+            });
+            console.log('added');
+          }
+
+   /*   firebase.database().ref('attendees/event_number' + localStorage.getItem('workshop_number')).on("child_added", function(snapshot, prevChildKey) {
+                        var newPost = snapshot.val();
+                        console.log(newPost);
+                        
+          });*/
+
+       firebase.database().ref('attendees/event_number' + localStorage.getItem('workshop_number')).on('value', function(snapshot) {
+    snapshot.forEach(function(childSnapshot) {
+      var childData = childSnapshot.val();
+      var childKey = childSnapshot.key;
+      console.log(childKey);
+      console.log(childData);
+
+      $('#dataTable > tbody:last-child').append(
+            '<tr>'// need to change closing tag to an opening `<tr>` tag.
+           
+            +'<td>'+childKey+'</td>'
+            +'<td>'+childData.DateTime+'</td>'
+           
+            +'</tr>');
+    });
+      $(document).ready( function () {
+          $('#dataTable').DataTable();
+      } );
+});
+
+
+
+
+  </script>
+    
+  <script type="text/javascript">
+
+        let scanner = new Instascan.Scanner({ video: document.getElementById('preview'),mirror: false});
+            scanner.addListener('scan', function (content) {
+              console.log(content);
+                //insert to firebase database
+                writeUserData('event_number1',content);
+            });
+            Instascan.Camera.getCameras().then(function (cameras) {
+              if (cameras.length > 0) {
+                if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+                          scanner.start(cameras[0]);
+                          console.log("phone")
+                  }else{
+                            scanner.start(cameras[0]);
+                  }
+            
+              } 
+                else {
+                console.error('No cameras found.');
+              }
+            }).catch(function (e) {
+              console.error(e);
+            });
+    </script>
+
+
+ <script type="text/javascript">
+   var $video  = $('preview'),
+    $window = $(window); 
+
+      $(window).resize(function(){
+          
+          var height = $window.height();
+          $video.css('height', height);
+          
+          var videoWidth = $video.width(),
+              windowWidth = $window.width(),
+          marginLeftAdjust =   (windowWidth - videoWidth) / 2;
+          
+          $video.css({
+              'height': height, 
+              'marginLeft' : marginLeftAdjust
+          });
+      }).resize();
+
+ </script>
+</body>
+</html>

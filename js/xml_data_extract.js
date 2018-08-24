@@ -47,8 +47,7 @@ function get_data(xml) {
  /*   //if no ID is found*/
     if(not_found){
     alert("ID/EMAIL DOES NOT EXIST!");
-     setTimeout(function(){     window.location.replace("index.html"); }, 3000);
-
+    window.location.replace("index.html");
     }
 
 

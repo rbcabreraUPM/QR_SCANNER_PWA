@@ -10,6 +10,8 @@ xhttp.onreadystatechange = function() {
 xhttp.open("GET", "ACC-response-data-expor.xml", true);
 xhttp.send();
 
+
+
 // functions
 function get_data(xml) {
 
@@ -71,6 +73,8 @@ function get_data(xml) {
             document.getElementById('id_number1').innerHTML = x[i].getElementsByTagName('unique_id')[0].childNodes[0].nodeValue;
             document.getElementById('email1').innerHTML = x[i].getElementsByTagName('email')[0].childNodes[0].nodeValue;
             document.getElementById('registration_type1').innerHTML = x[i].getElementsByTagName('registration_type')[0].childNodes[0].nodeValue;
+            document.getElementById('id_qrcode').src = x[i].getElementsByTagName('qr_code')[0].childNodes[0].nodeValue;
+            console.log(x[i].getElementsByTagName('qr_code')[0].childNodes[0].nodeValue);
         }
 
         function crop(){

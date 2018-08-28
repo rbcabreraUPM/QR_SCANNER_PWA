@@ -12,6 +12,9 @@
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 
+
+
+
   <style>
 
   /* css as usual */
@@ -62,18 +65,34 @@
     padding-bottom: 0px;
     height: auto;
   }
+
+     #toast-container {
+      top: auto !important;
+      right: auto !important;
+      bottom: 10%;
+      left:50%;
+    }
   }
 
   @media (min-width: 1366px){
     .video-container{
-    padding-top: 70px;
+   
     padding-bottom: 0px;
     height: auto;
   }
 
   #preview{
-    width: 1000px;
+    width: 750px;
   }
+
+      #toast-container {
+      top: auto !important;
+      right: auto !important;
+      bottom: 0%;
+      left:50%;
+    
+    }
+
   }
 </style>
 
@@ -111,27 +130,61 @@
 </head>
 <body>
 
-  <nav class="teal" role="navigation">
+    <ul id="dropdown1" class="dropdown-content">
+  <li><a class="" onclick=AttendanceChecker(1);>Workshop 1</a></li>
+  <li class="divider"></li>
+  <li><a class="" onclick=AttendanceChecker(2);>Workshop 2</a></li>
+  <li class="divider"></li>
+  <li><a class="" onclick=AttendanceChecker(3);>Workshop 3</a></li>
+  <li class="divider"></li>
+  <li><a class="" onclick=AttendanceChecker(4);>Workshop 4</a></li>
+  <li class="divider"></li>
+  <li><a class="" onclick=AttendanceChecker(5);>Workshop 5</a></li>
+  <li class="divider"></li>
+  <li><a class="" onclick=AttendanceChecker(6);>Workshop 6</a></li>
+  <li class="divider"></li>
+  <li><a class="" onclick=AttendanceChecker(7);>Workshop 7</a></li>
+  <li class="divider"></li>
+  <li><a class="" onclick=AttendanceChecker(8);>Workshop 8</a></li>
+  <li class="divider"></li>
+  <li><a class="" onclick=AttendanceChecker(9);>Workshop 9</a></li>
+  <li class="divider"></li>
+  <li><a class="" onclick=AttendanceChecker(10);>Workshop 10</a></li>
+  <li class="divider"></li>
+  <li><a class="" onclick=AttendanceChecker(11);>Workshop 11</a></li>
+  <li class="divider"></li>
+  <li><a class="" onclick=AttendanceChecker(12);>Workshop 12</a></li>
+  <li class="divider"></li>
+  <li><a class="" onclick=AttendanceChecker(13);>Workshop 13</a></li>
+
+</ul>
+
+  <nav id ="main_nav" class="" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo" style="font-size:110%">QR CODE SCANNER</a>
       <ul class="right hide-on-med-and-down">
         <li><a href="/attendees.html">REFRESH</a></li>
+          <li><a class="dropdown-button" href="#!" data-activates="dropdown1">WORKSHOP<i class="material-icons right">arrow_drop_down</i></a></li>
+          <li ><a id="modal_attendees" class="waves-effect waves-light btn modal-trigger"  href="#attendess_modal">ATTENDEES</a></li>
+
+
         
       </ul>
 
 
       <ul id="nav-mobile" class="side-nav">
         <li><a href="/attendees.html">REFRESH</a></li>
-
+<!--  <li><a class="dropdown-button" href="#!" data-activates="dropdown1">WORKSHOP<i class="material-icons right">arrow_drop_down</i></a></li>
+          <li ><a id="modal_attendees" class="waves-effect waves-light btn modal-trigger"  href="#attendess_modal">ATTENDEES</a></li> -->
         <div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
 
   </nav>
-  <nav class=" teal lighten-2">
+  <nav id="navbar_breadcrumb" class="">
     <div class="nav-wrapper container">
       <div class="col s12">
-        <a href="#!" id ="breadcrumb_label" class="breadcrumb"></a>
+        <a href="#" id ="breadcrumb_label" class="breadcrumb"></a>
       </div>
     </div>
   </nav>
@@ -139,16 +192,23 @@
 
 <br><br>
   <div  class="video-container">
-       <div style="padding-left: 10px" class="row ">
-            <div class="col m8 s8 l8">
+       <div class="row center ">
+            <div class="col m12 s12 l12">
               <video id="preview"></video>
             </div>
 
-              <div class="col m4 s4 l4">
+
+             <!-- Modal Structure -->
+        <div id="attendess_modal" class="modal modal-fixed-footer">
+          <div class="modal-content">
+            <h4 id="event_header"></h4>
+            
+              <div class="col m12 s12 l12">
                  <table  id ="dataTable" class="bordered responsive-table">
                     <thead>
                       <tr>
                           <th>ID</th>
+                           <th>Name</th>
                           <th>TIME</th>
                         
                       </tr>
@@ -159,6 +219,12 @@
                     </tbody>
                   </table>
             </div>
+          </div>
+          <div id="modal_footer" class=" modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat white-text ">CLOSE</a>
+          </div>
+        </div>
+
        </div>
   </div>
 
@@ -169,6 +235,8 @@
   <script src="js/init.js"></script>
   <script type="text/javascript">
     document.getElementById('breadcrumb_label').innerHTML = "Workshop " + localStorage.getItem('workshop_number');
+    document.getElementById('event_header').innerHTML = "Workshop " + localStorage.getItem('workshop_number');
+   
     
   </script>
 
@@ -192,42 +260,70 @@
   <script type="text/javascript">
       var database_ref = firebase.database().ref();
 
+       var date = new Date();  
+        date = date.toString();
+       var date_event = date.slice(0,-45);
+        var date_event_time = date.slice(0,-36);
 
+        
       function writeUserData(event_number, id_name) {
-            var d = new Date(); 
-            d = d.toString();
-            d = d.slice(0,-36);
-            firebase.database().ref('attendees/' + event_number +'/' +id_name).set({
-             DateTime: d
+        var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+              if (this.readyState == 4 && this.status == 200) {
+              insertData(this);
+              }
+            };
+            xhttp.open("GET", "ACC-response-data-expor.xml", true);
+            xhttp.send();
+          
+          function insertData(xml) {
+            var i;
+            var xmlDoc = xml.responseXML;
+            var x = xmlDoc.getElementsByTagName("delegate");
+            var badge_name;
+            for (i = 0; i <x.length; i++) { 
+              if(id_name == String(x[i].getElementsByTagName("unique_id")[0].childNodes[0].nodeValue)){
+                badge_name = x[i].getElementsByTagName("badge_name")[0].childNodes[0].nodeValue;
+           
+           
+            firebase.database().ref('attendees/event_number/'+date_event +'/'+ event_number +'/' +id_name).set({
+             DateTime: date_event_time,
+             BadgeName: badge_name
             });
-            console.log('added');
+            Materialize.toast('RECORDED!', 2000); // 4000 is the duration of the toast
+                
+              }
+            }
           }
+      }
 
-   /*   firebase.database().ref('attendees/event_number' + localStorage.getItem('workshop_number')).on("child_added", function(snapshot, prevChildKey) {
-                        var newPost = snapshot.val();
-                        console.log(newPost);
-                        
-          });*/
 
-       firebase.database().ref('attendees/event_number' + localStorage.getItem('workshop_number')).on('value', function(snapshot) {
-    snapshot.forEach(function(childSnapshot) {
-      var childData = childSnapshot.val();
-      var childKey = childSnapshot.key;
-      console.log(childKey);
-      console.log(childData);
+        function appendToTable(childData,childKey){
+             $('#dataTable > tbody:last-child').append(
+                  '<tr>'// need to change closing tag to an opening `<tr>` tag.
+                 
+                  +'<td>'+childKey+'</td>'
+                  +'<td>'+childData.BadgeName+'</td>'
+                  +'<td>'+childData.DateTime+'</td>'
+                 
+                  +'</tr>');
+        }
 
-      $('#dataTable > tbody:last-child').append(
-            '<tr>'// need to change closing tag to an opening `<tr>` tag.
-           
-            +'<td>'+childKey+'</td>'
-            +'<td>'+childData.DateTime+'</td>'
-           
-            +'</tr>');
-    });
-      $(document).ready( function () {
-          $('#dataTable').DataTable();
-      } );
-});
+
+       firebase.database().ref('attendees/event_number/'+date_event+"/"+ localStorage.getItem('workshop_number')).once('value', function(snapshot) {
+            snapshot.forEach(function(childSnapshot) {
+            var childData = childSnapshot.val();
+            var childKey = childSnapshot.key;
+            console.log(childKey);
+            console.log(childData);
+
+             appendToTable(childData,childKey);
+          });
+
+            $(document).ready( function () {
+                $('#dataTable').DataTable();
+            } );
+      });
 
 
 
@@ -240,13 +336,13 @@
             scanner.addListener('scan', function (content) {
               console.log(content);
                 //insert to firebase database
-                writeUserData('event_number1',content);
+                writeUserData(localStorage.getItem('workshop_number'),content);
             });
             Instascan.Camera.getCameras().then(function (cameras) {
               if (cameras.length > 0) {
                 if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
                           scanner.start(cameras[0]);
-                          console.log("phone")
+                         
                   }else{
                             scanner.start(cameras[0]);
                   }
@@ -280,6 +376,15 @@
           });
       }).resize();
 
+          $(document).ready(function(){
+      // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+      $('.modal').modal();
+    });
+         
+
  </script>
+ <script type="text/javascript" src="js/AttendanceChecker.js"></script>
+<script type="text/javascript" src="js/breadcrumb_color.js"></script>
+
 </body>
 </html>

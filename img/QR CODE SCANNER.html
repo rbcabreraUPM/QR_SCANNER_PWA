@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<!-- saved from url=(0036)http://127.0.0.1:8080/attendees.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0">
+   <meta name="mobile-web-app-capable" content="yes">
+  
+  <title>QR CODE SCANNER</title>
+
+  <!-- CSS  -->
+  <link href="./QR CODE SCANNER_files/icon" rel="stylesheet">
+  <link href="./QR CODE SCANNER_files/materialize.css" type="text/css" rel="stylesheet" media="screen,projection">
+  <link href="./QR CODE SCANNER_files/style.css" type="text/css" rel="stylesheet" media="screen,projection">
+
+  <style>
+
+  /* css as usual */
+
+
+/* condition for screen size minimum of 500px */
+@media (max-width:500px) {
+
+  /* your conditional / responsive CSS inside this condition */
+
+  
+
+.video-container {
+  position: absolute;
+  /*top: 10%;*/
+  bottom: 10;
+  width: 100%;
+  height: 50%; 
+  padding-top: 70px;
+
+}
+  .video-container video {
+    /* Make video to at least 100% wide and tall */
+    min-width: 100%; 
+    min-height: 100%; 
+
+    /* Setting width & height to auto prevents the browser from stretching or squishing the video */
+    width: auto;
+    height: auto;
+
+    /* Center the video */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+  }
+}
+
+</style>
+
+
+
+
+<style type="text/css">
+  @media (min-width: 1024px){
+    .video-container{
+    padding-top: 15px;
+    padding-bottom: 0px;
+    height: auto;
+  }
+  }
+
+  @media (min-width: 1366px){
+    .video-container{
+    padding-top: 70px;
+    padding-bottom: 0px;
+    height: auto;
+  }
+
+  #preview{
+    width: 800px;
+  }
+  }
+</style>
+
+<link rel="stylesheet" type="text/css" href="./QR CODE SCANNER_files/datatables.min.css">
+ 
+
+
+
+<script src="./QR CODE SCANNER_files/cb=gapi.loaded_0" async=""></script><script src="./QR CODE SCANNER_files/jquery-2.1.1.min.js.download"></script>
+  <script type="text/javascript" src="./QR CODE SCANNER_files/html5-qrcode.min.js.download"></script>
+  <script type="text/javascript" src="./QR CODE SCANNER_files/jsqrcode-combined.min.js.download"></script>
+  <script type="text/javascript" src="./QR CODE SCANNER_files/instascan.min.js.download"></script>
+<script type="text/javascript" src="./QR CODE SCANNER_files/datatables.min.js.download"></script>
+
+
+<link rel="apple-touch-icon" sizes="57x57" href="http://127.0.0.1:8080/img/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="http://127.0.0.1:8080/img/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="http://127.0.0.1:8080/img/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="http://127.0.0.1:8080/img/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="http://127.0.0.1:8080/img/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="http://127.0.0.1:8080/img/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="http://127.0.0.1:8080/img/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="http://127.0.0.1:8080/img/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="http://127.0.0.1:8080/img/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="http://127.0.0.1:8080/img/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://127.0.0.1:8080/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="http://127.0.0.1:8080/img/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="http://127.0.0.1:8080/img/favicon-16x16.png">
+<link rel="manifest" href="http://127.0.0.1:8080/img/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="img/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+
+<script type="text/javascript" charset="UTF-8" src="./QR CODE SCANNER_files/api.js.download" gapi_processed="true"></script></head>
+<body>
+
+    
+
+  <nav class="teal" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="http://127.0.0.1:8080/" class="brand-logo" style="font-size:110%">QR CODE SCANNER</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="http://127.0.0.1:8080/attendees.html">REFRESH</a></li>
+          <li><a class="dropdown-button" href="http://127.0.0.1:8080/attendees.html#!" data-activates="dropdown1">WORKSHOP<i class="material-icons right">arrow_drop_down</i></a><ul id="dropdown1" class="dropdown-content">
+  <li><a onclick="AttendanceChecker(1);">Workshop 1</a></li>
+  <li class="divider"></li>
+  <li><a onclick="AttendanceChecker(2);">Workshop 2</a></li>
+  <li class="divider"></li>
+  <li><a onclick="AttendanceChecker(3);">Workshop 3</a></li>
+  <li class="divider"></li>
+  <li><a onclick="AttendanceChecker(4);">Workshop 4</a></li>
+  <li class="divider"></li>
+  <li><a onclick="AttendanceChecker(5);">Workshop 5</a></li>
+  <li class="divider"></li>
+  <li><a onclick="AttendanceChecker(6);">Workshop 6</a></li>
+  <li class="divider"></li>
+  <li><a onclick="AttendanceChecker(7);">Workshop 7</a></li>
+  <li class="divider"></li>
+  <li><a onclick="AttendanceChecker(8);">Workshop 8</a></li>
+  <li class="divider"></li>
+  <li><a onclick="AttendanceChecker(9);">Workshop 9</a></li>
+  <li class="divider"></li>
+  <li><a onclick="AttendanceChecker(10);">Workshop 10</a></li>
+  <li class="divider"></li>
+  <li><a onclick="AttendanceChecker(11);">Workshop 11</a></li>
+  <li class="divider"></li>
+  <li><a onclick="AttendanceChecker(12);">Workshop 12</a></li>
+  <li class="divider"></li>
+  <li><a onclick="AttendanceChecker(13);">Workshop 13</a></li>
+
+</ul></li>
+          <li><a href="http://127.0.0.1:8080/view_attendess.html">ATTENDEES LIST</a></li>
+
+
+        
+      </ul>
+
+
+      <ul id="nav-mobile" class="side-nav" style="transform: translateX(-100%);">
+        <li><a href="http://127.0.0.1:8080/attendees.html">REFRESH</a></li>
+
+        <div>Icons made by <a href="http://www.freepik.com/" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+      </ul>
+      <a href="http://127.0.0.1:8080/attendees.html#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+
+  </nav>
+  <nav class=" teal lighten-2">
+    <div class="nav-wrapper container">
+      <div class="col s12">
+        <a href="http://127.0.0.1:8080/attendees.html#!" id="breadcrumb_label" class="breadcrumb">Workshop 1</a>
+      </div>
+    </div>
+  </nav>
+
+
+<br><br>
+  <div class="video-container">
+       <div class="row center ">
+            <div class="col m12 s12 l12">
+              <video id="preview" autoplay="autoplay" class="active"></video>
+            </div>
+
+           <!--    <div class="col m12 s12 l4">
+                 <table  id ="dataTable" class="bordered responsive-table">
+                    <thead>
+                      <tr>
+                          <th>ID</th>
+                          <th>TIME</th>
+                        
+                      </tr>
+                    </thead>
+
+                    <tbody id="myTable">
+
+                    </tbody>
+                  </table>
+            </div> -->
+       </div>
+  </div>
+
+   
+   <!--  Scripts-->
+  
+  <script src="./QR CODE SCANNER_files/materialize.js.download"></script>
+  <script src="./QR CODE SCANNER_files/init.js.download"></script>
+  <script type="text/javascript">
+    document.getElementById('breadcrumb_label').innerHTML = "Workshop " + localStorage.getItem('workshop_number');
+    
+  </script>
+
+
+
+  <script src="./QR CODE SCANNER_files/firebase.js.download"></script>
+  <script type="text/javascript">
+    
+
+    var config = {
+    apiKey: "AIzaSyD1QMwn2nUb6QUUXaSdU8oPZDgMRev76C8",
+    authDomain: "clinicqr.firebaseapp.com",
+    databaseURL: "https://clinicqr.firebaseio.com",
+    projectId: "clinicqr",
+    storageBucket: "clinicqr.appspot.com",
+    messagingSenderId: "410584252822"
+  };
+  firebase.initializeApp(config);
+  </script>
+
+  <script type="text/javascript">
+      var database_ref = firebase.database().ref();
+
+
+      function writeUserData(event_number, id_name) {
+            var d = new Date(); 
+            d = d.toString();
+            d = d.slice(0,-36);
+            firebase.database().ref('attendees/' + event_number +'/' +id_name).set({
+             DateTime: d
+            });
+            console.log('added');
+          }
+
+   /*   firebase.database().ref('attendees/event_number' + localStorage.getItem('workshop_number')).on("child_added", function(snapshot, prevChildKey) {
+                        var newPost = snapshot.val();
+                        console.log(newPost);
+                        
+          });*/
+
+    /*   firebase.database().ref('attendees/event_number' + localStorage.getItem('workshop_number')).on('value', function(snapshot) {
+    snapshot.forEach(function(childSnapshot) {
+      var childData = childSnapshot.val();
+      var childKey = childSnapshot.key;
+      console.log(childKey);
+      console.log(childData);
+
+      $('#dataTable > tbody:last-child').append(
+            '<tr>'// need to change closing tag to an opening `<tr>` tag.
+           
+            +'<td>'+childKey+'</td>'
+            +'<td>'+childData.DateTime+'</td>'
+           
+            +'</tr>');
+    });
+      $(document).ready( function () {
+          $('#dataTable').DataTable();
+      } );
+});*/
+
+
+
+
+  </script>
+    
+  <script type="text/javascript">
+
+        let scanner = new Instascan.Scanner({ video: document.getElementById('preview'),mirror: false});
+            scanner.addListener('scan', function (content) {
+              console.log(content);
+                //insert to firebase database
+                writeUserData('event_number1',content);
+            });
+            Instascan.Camera.getCameras().then(function (cameras) {
+              if (cameras.length > 0) {
+                if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+                          scanner.start(cameras[0]);
+                          console.log("phone")
+                  }else{
+                            scanner.start(cameras[0]);
+                  }
+            
+              } 
+                else {
+                console.error('No cameras found.');
+              }
+            }).catch(function (e) {
+              console.error(e);
+            });
+    </script>
+
+
+ <script type="text/javascript">
+   var $video  = $('preview'),
+    $window = $(window); 
+
+      $(window).resize(function(){
+          
+          var height = $window.height();
+          $video.css('height', height);
+          
+          var videoWidth = $video.width(),
+              windowWidth = $window.width(),
+          marginLeftAdjust =   (windowWidth - videoWidth) / 2;
+          
+          $video.css({
+              'height': height, 
+              'marginLeft' : marginLeftAdjust
+          });
+      }).resize();
+
+ </script>
+ <script type="text/javascript" src="./QR CODE SCANNER_files/AttendanceChecker.js.download"></script>
+
+
+
+<div class="hiddendiv common"></div><div class="drag-target" data-sidenav="nav-mobile" style="left: 0px; touch-action: pan-y; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></div><iframe ng-non-bindable="" frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" tabindex="0" vspace="0" width="100%" id="I0_1535419129192" name="I0_1535419129192" src="./QR CODE SCANNER_files/iframe.html" style="position: absolute; top: -100px; width: 1px; height: 1px;"></iframe></body></html>

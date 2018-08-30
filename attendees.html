@@ -160,7 +160,7 @@
 </ul>
 
   <nav id ="main_nav" class="" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="/QR_SCANNER_PWA" class="brand-logo" style="font-size:110%">QR CODE SCANNER</a>
+    <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo" style="font-size:110%">QR CODE SCANNER</a>
       <ul class="right hide-on-med-and-down">
         <li><a href="/attendees.html">REFRESH</a></li>
           <li><a class="dropdown-button" href="#!" data-activates="dropdown1">WORKSHOP<i class="material-icons right">arrow_drop_down</i></a></li>
@@ -236,16 +236,10 @@
   <script type="text/javascript">
     document.getElementById('breadcrumb_label').innerHTML = "Workshop " + localStorage.getItem('workshop_number');
     document.getElementById('event_header').innerHTML = "Workshop " + localStorage.getItem('workshop_number');
-   
-    
   </script>
 
-
-
-  <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase.js"></script>
   <script type="text/javascript">
-    
-
     var config = {
     apiKey: "AIzaSyD1QMwn2nUb6QUUXaSdU8oPZDgMRev76C8",
     authDomain: "clinicqr.firebaseapp.com",
@@ -256,6 +250,10 @@
   };
   firebase.initializeApp(config);
   </script>
+
+
+
+
 
   <script type="text/javascript">
       var database_ref = firebase.database().ref();
@@ -341,7 +339,7 @@
             Instascan.Camera.getCameras().then(function (cameras) {
               if (cameras.length > 0) {
                 if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-                          scanner.start(cameras[1]);
+                          scanner.start(cameras[0]);
                          
                   }else{
                             scanner.start(cameras[0]);

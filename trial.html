@@ -19,27 +19,32 @@
   <script src="js/jquery.cropit.js"></script>
 
 
+
+
+
 <style media="print">
-  
+   @page{
+    size: 3.74in 3.74in;
+   }
   #cropped_image{
-     padding-top: 131px;
+  
       padding-left: 6px;
       display: block;
     margin-left: auto;
     margin-right: auto;
-   
+    height: 300;
+    width: 300;
    
  }
 
- #id_qrcode{
-     padding-top: 131px;
-      padding-left: 10px;
+ /*#id_qrcode{
+     padding-top: 10px;
+      padding-left: 200px;
       display: block;
     margin-left: auto;
     margin-right: auto;
-   
-   
- }
+    
+ }*/
  
  #badge_name{
   padding-top: 5px;
@@ -92,16 +97,16 @@
       }
 
       .modal-content{
-        height: 400px;
+        height: 220px;
       }
 
       .id-preview-info-image {
-           background-image: url("img/id_template.jpg");
-           
+          /* background-image: url("img/id_template.jpg");
+            height: 500px;
             background-position: center;
             background-repeat: no-repeat;
-            height: 430px;
-            position: relative;
+            padding-bottom: 600px;*/
+          
           }
 
   /*    .id-preview-info-content {
@@ -110,13 +115,13 @@
       }
 */
       .id_preview-info-id-image{
-         padding-top: 130px;
+         padding-top: 50px;
       padding-left: 7px;
   }
 
         #cropped_image{
-         width: 120px;
-         height:116px;
+         width: 142px;
+         height:142px;
        }
 
       #company_name{
@@ -124,10 +129,9 @@
         font-size: 9px;
       }
 
-      #id_qrcode{
-        padding-top: 10px;
-        padding-left: 200px;
-      }
+   
+
+ 
 
 
 </style>
@@ -139,6 +143,7 @@
       <ul class="right hide-on-med-and-down">
         <li><a href="/trial.html">REFRESH</a></li>
           <li><a href="/">SCAN QR CODE</a></li>
+          
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
@@ -201,30 +206,40 @@
 
                 <!-- Modal Structure -->
                 <div id="modal1" class="modal  modal-fixed-footer">
+                  <br>
                   <div class="modal-content">
-                        <br>
+                  
                     <div class="id-preview-info-image">
                         <div class="id-preview-info-content">
                           <div  id="print_id_template" class="id_preview-info-id-image">
+
                              <img class="image1 responsive-img" id="cropped_image">
                              <div style=" font-weight: bold;" id="badge_name"></div>
                              <div id="company_name"></div>
-                             <img class="responsive-img" id="id_qrcode">
+                            
+               <img id = "telin_logo" class="responsive-img" src="img/telin.jpg" style="width: 133px;height: 77; float:left;">
 
+          
+                         
+                          
+                                  <img class="responsive-img" id="id_qrcode" style="float:right;"> 
+                            
                           </div>
                         </div>
                       </div>
                      <br>
-                            <a class="waves-effect waves-light red btn"  id="print" onclick="printDiv('print_id_template')">PRINT ID</a>
+
                   </div>
 
                   <div class="modal-footer">
+                    <a class="center waves-effect waves-light red btn"  id="print" onclick="printDiv('print_id_template')">PRINT ID</a>
                     <a href="trial.html"  class="modal-action modal-close waves-effect waves-green btn-flat">CLOSE PREVIEW</a>
                   </div>
                 </div>
        </div>
   </div>
 </div>
+
 
 
 

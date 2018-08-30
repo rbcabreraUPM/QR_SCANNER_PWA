@@ -92,7 +92,6 @@ function get_data(xml) {
         $('.image-editor').cropit({
           imageState: {
             src: 'img/user.png',
-      
           },
         });
     }

@@ -7,7 +7,7 @@ xhttp.onreadystatechange = function() {
         get_data(this);
     }
 };
-xhttp.open("GET", "response-data-expor.xml", true);
+xhttp.open("GET", "response-data-export.xml", true);
 xhttp.send();
 
 

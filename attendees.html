@@ -286,7 +286,7 @@
            
             firebase.database().ref('attendees/event_number/'+date_event +'/'+ event_number +'/' +id_name).set({
              DateTime: date_event_time,
-        /*     BadgeName: badge_name*/
+             BadgeName: badge_name
             });
             Materialize.toast('RECORDED!', 2000); // 4000 is the duration of the toast
                 

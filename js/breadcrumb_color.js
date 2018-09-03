@@ -13,7 +13,7 @@ $(document).ready(function(){
 	
      switch(localStorage.getItem('workshop_number')){
      	case "1":
-     		  changeColor('red darken-1','red accent-2','red darken-2','red-text','Blockchain as Next Gen Service Pl');
+     		  changeColor('red darken-1','red accent-2','red darken-2','red-text','Blockchain as Next Gen Service Platform');
      		  break;
      	case "2":
      	      changeColor('blue darken-1','blue accent-2','blue darken-2', 'blue-text','Blockchain:  Use Cases and Building Blocks for the Future ');

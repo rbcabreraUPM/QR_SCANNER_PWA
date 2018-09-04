@@ -43,8 +43,8 @@ $(document).ready(function(){
  	      changeColor('pink darken-4','pink darken-2','pink darken-4', 'pink-text','IBM IBV Global C-Suite Report 2018: Incumbents Strike Back');
  		  break;
 
- 	case "10":
-     		  changeColor('light-blue darken-1','light-blue darken-3','light-blue darken-1', 'blue-text');
+ 	 case "10":
+     		  changeColor('light-blue darken-1','light-blue darken-3','light-blue darken-1', 'blue-text','Plenary');
      		  break;
      	case "11":
      	      changeColor('brown darken-1','brown darken-3','brown darken-1', 'brown-text');

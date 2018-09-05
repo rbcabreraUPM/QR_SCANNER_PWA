@@ -47,10 +47,10 @@ $(document).ready(function(){
      		  changeColor('light-blue darken-1','light-blue darken-3','light-blue darken-1', 'blue-text','Plenary');
      		  break;
      	case "11":
-     	      changeColor('brown darken-1','brown darken-3','brown darken-1', 'brown-text');
+     	      changeColor('brown darken-1','brown darken-3','brown darken-1', 'brown-text','FUTUREFEST - #THROWBACK');
      		  break;
       	case "12":
- 	      changeColor('blue-grey darken-3','blue-grey darken-2','blue-grey darken-3', 'blue-text');
+ 	      changeColor('blue-grey darken-3','blue-grey darken-2','blue-grey darken-3', 'blue-text','FUTUREFEST - HAVANA NIGHT');
  		  break;
       	case "13":
  	      changeColor('green darken-3','green darken-2','green darken-3', 'green-text');

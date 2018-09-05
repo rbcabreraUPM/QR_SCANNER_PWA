@@ -53,7 +53,10 @@ $(document).ready(function(){
  	      changeColor('blue-grey darken-3','blue-grey darken-2','blue-grey darken-3', 'blue-text','FUTUREFEST - HAVANA NIGHT');
  		  break;
       	case "13":
- 	      changeColor('green darken-3','green darken-2','green darken-3', 'green-text');
+ 	      changeColor('green darken-3','green darken-2','green darken-3', 'green-text','REGGAE NIGHT');
+ 		  break;
+	case "14":
+ 	      changeColor('blue-grey darken-3','blue-grey darken-2','blue-grey darken-3', 'blue-text','FUTUREFEST - ELECTRO IBIZA');
  		  break;
 
 

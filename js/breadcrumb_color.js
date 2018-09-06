@@ -58,6 +58,9 @@ $(document).ready(function(){
 	case "14":
  	      changeColor('blue-grey darken-3','blue-grey darken-2','blue-grey darken-3', 'blue-text','FUTUREFEST - ELECTRO IBIZA');
  		  break;
+		 case "15":
+ 	      changeColor('pink darken-4','pink darken-2','pink darken-4', 'pink-text','ROCK AND ROLLA');
+ 		  break;
 
 
 
